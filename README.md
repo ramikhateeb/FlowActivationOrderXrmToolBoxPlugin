@@ -12,7 +12,9 @@ A plugin for XrmToolBox that gives valid activation order for flows in a solutio
 2. From the ***Solutions*** menu, choose your solution.
 3. All the flows in the selected solution will be listed in the table on the left side. Select the flows you want to analyze their parent-child relationships.
 4. Click the ***Generate*** button.
-5. On the right section,
+5. On the right side, the flows will be listed in a valid activation order that can be used to avoid *ChildFlowNeverPublished* error when you try to activate a flow before its children.
+![](Docs/errormessage.png)
+The tool offers two formates:
 	- ***ALM Accelerator Configuration*** tab shows a JSON-like text that you can copy and paste in the [ALM Accelerator for Power Platform Administration](https://learn.microsoft.com/en-us/power-platform/guidance/alm-accelerator/overview "ALM Accelerator for Power Platform Administration") App (User Setting -> Data field)
 	- ***Visual*** tab displays a graphical representation of the relationships between the selected flows.
 
