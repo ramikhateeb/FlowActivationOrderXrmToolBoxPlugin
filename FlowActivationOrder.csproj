@@ -278,12 +278,7 @@
     <Compile Include="Ext\QuikGraph.MSAGL\MsaglGraphPopulator.cs" />
     <Compile Include="Ext\QuikGraph.MSAGL\MsaglIdentifiableGraphPopulator.cs" />
     <Compile Include="Ext\QuikGraph.MSAGL\MsaglToStringGraphPopulator.cs" />
-    <Compile Include="Models\APIConns.cs" />
-    <Compile Include="Models\Display.cs" />
-    <Compile Include="Models\FlowConn.cs" />
     <Compile Include="Models\FlowDefinition.cs" />
-    <Compile Include="Models\FlowRun.cs" />
-    <Compile Include="Models\LogicAppConn.cs" />
     <Compile Include="Models\Solution.cs" />
     <Compile Include="Models\WorkflowDefinition.cs" />
     <Compile Include="Models\WorkflowObject.cs" />
@@ -295,14 +290,12 @@
       <DependentUpon>MainControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="schema\WorkflowDefinition.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utils\AttributesHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="schema\workflowdefinition.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainControl.resx">

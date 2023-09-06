@@ -19,6 +19,7 @@ namespace FlowActivationOrder.Models
     using System.Text.Json.Serialization;
     using System.Globalization;
     using FlowActivationOrder.Utils;
+    using System.Text.Json.Nodes;
 
     /// <summary>
     /// The workflow.
@@ -1806,8 +1807,11 @@ namespace FlowActivationOrder.Models
         public InputsObject Object;
         public string String;
 
+        public JsonNode Any;
+
         public static implicit operator InputsUnion(InputsObject Object) => new InputsUnion { Object = Object };
         public static implicit operator InputsUnion(string String) => new InputsUnion { String = String };
+        public static implicit operator InputsUnion(JsonNode Any) => new InputsUnion { Any = Any };
     }
 
     /// <summary>
@@ -1965,8 +1969,20 @@ namespace FlowActivationOrder.Models
                     var stringValue = reader.GetString();
                     return new InputsUnion { String = stringValue };
                 case JsonTokenType.StartObject:
-                    var objectValue = JsonSerializer.Deserialize<InputsObject>(ref reader, options);
-                    return new InputsUnion { Object = objectValue };
+                    try
+                    {
+                        var objectValue = JsonSerializer.Deserialize<InputsObject>(ref reader, options);
+                        return new InputsUnion { Object = objectValue };
+                    }
+                    catch (JsonException exception)
+                    {
+                        var anyValue1 = JsonSerializer.Deserialize<JsonNode>(ref reader, options);
+                        return new InputsUnion { Any = anyValue1 };
+                    }
+
+                default:
+                    var anyValue2 = JsonSerializer.Deserialize<JsonNode>(ref reader, options);
+                    return new InputsUnion { Any = anyValue2 };
             }
             throw new Exception("Cannot unmarshal type InputsUnion");
         }
